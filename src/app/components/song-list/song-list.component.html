@@ -1,0 +1,11 @@
+<p>song-list works!</p>
+
+<h2 *ngIf="message">{{message}}</h2>
+
+ 
+<app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'></app-song-row>
+
+<app-song-details *ngIf="currentSong" [song]="currentSong">
+
+
+</app-song-details>
