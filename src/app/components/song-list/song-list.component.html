@@ -1,11 +1,23 @@
-<p>song-list works!</p>
+<h1>All Songs</h1>
 
 <h2 *ngIf="message">{{message}}</h2>
 
- 
+<button (click)="openAddSong()" *ngIf="!showSongForm" class="btn btn-lg btn-outline-primary">Add Song</button>
+
+<button (click)="openEditSong()" *ngIf="!showSongForm" [disabled]="!currentSong"
+class="btn btn-lg btn-outline-primary">Edit Song</button>
+
+<button (click)="deleteSong()" *ngIf="!showSongForm" [disabled]="!currentSong"
+class="btn btn-lg btn-outline-danger">Delete Song</button>
+
+<app-search *ngIf="showSongForm" 
+(songFormClose)="songFormClose($event)"
+  [song]="currentSong"></app-search>
+
+<div *ngIf="!showSongForm">
 <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'></app-song-row>
+</div>
 
 <app-song-details *ngIf="currentSong" [song]="currentSong">
-
 
 </app-song-details>

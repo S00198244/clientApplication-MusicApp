@@ -1,0 +1,26 @@
+<form [formGroup]="songForm" (ngSubmit) = "onSubmit()" class>
+
+
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeForm()"></button>
+
+<div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input id="title" type="text" formControlName="title" class="form-control">
+</div>
+
+<div class="mb-3">
+    <label for="artists" class="form-label">Artists</label>
+    <input id="artists" type="text" formControlName="artists" class="form-control">
+</div>
+
+<button type="submit" [disabled]= "!songForm?.valid" class="btn btn-primary" >Submit</button>
+
+<div *ngIf="title?.invalid && title?.touched"  class="alert alert-danger" >
+    Title is required and must be more than 3 characters
+</div>
+
+<div *ngIf="artists?.invalid && artists?.touched"  class="alert alert-danger" >
+    Artist's name is required
+</div>
+
+</form>

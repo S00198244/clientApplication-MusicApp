@@ -1,7 +1,30 @@
-<h1>2021 Client Application for musicLibrary Application
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Song App</span>
+  </nav>
 
-<app-song-list>
+  <div class="container-fluid">
+    <div class="row" style="height: 80vh;">
+      <div class="col-2" style="border-right: solid; padding-top: 2rem;">
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item list-group-item-action">
+            All Songs</a>
+          <a href="#" class="list-group-item list-group-item-action">Liked Songs</a>
+        </div>
+      </div>
+      <div class="col-8" style="padding-top: 2rem;">
 
-</app-song-list>
+        <app-song-list></app-song-list>
+
+      </div>
+    </div>
+</div>
+
+<div class="card w-100">
+  <div class="card-body">
+    [Selected Song]
+  </div>
+</div>
 
 <router-outlet></router-outlet>
+
+

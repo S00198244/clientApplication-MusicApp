@@ -13,6 +13,25 @@ export class SongService {
 
   constructor(private http: HttpClient) { }
 
+  //ADD
+  addSong(song: Song): Observable<Song> {
+    return this.http.post<Song>(this.dataUri, song)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  //UPDATE
+  updateSong(id: string, song: Song): Observable<Song> {
+    console.log('subscribing to update' + id);
+    let songURI: string = this.dataUri + '/' + id;
+    return this.http.put<Song>(songURI, song)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  //GET 
   getSongs(): Observable<Song[]>{
     console.log('getSongs called');
 
@@ -21,6 +40,15 @@ export class SongService {
       catchError(this.handleError)
     )
   }
+
+    /** DELETE: delete the song from the server */
+deleteSong(id: string): Observable<unknown> {
+  const url = `${this.dataUri}/${id}`; // DELETE 
+  return this.http.delete(url)
+    .pipe(
+      catchError(this.handleError)
+    );
+}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
