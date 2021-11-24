@@ -1,9 +1,10 @@
-<nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Song App</span>
+<nav class="navbar navbar-light bg-light" style="height: 10vh;">
+    <span class="navbar-brand mb-0 h1" style="padding: 2rem;">Song App</span>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row" style="height: 80vh;">
+  <div class="container-fluid" style="height: 80vh;">
+    <div class="row">
+
       <div class="col-2" style="border-right: solid; padding-top: 2rem;">
         <div class="list-group list-group-flush">
           <a href="#" class="list-group-item list-group-item-action">
@@ -11,17 +12,21 @@
           <a href="#" class="list-group-item list-group-item-action">Liked Songs</a>
         </div>
       </div>
-      <div class="col-8" style="padding-top: 2rem;">
 
+      <div class="col-4" style="border-right: solid; padding: 2rem;">
+        <h1>All Songs</h1>
         <app-song-list></app-song-list>
-
       </div>
+
+    <div class="col-4">
+      
+    </div>
     </div>
 </div>
 
-<div class="card w-100">
+<div class="card w-100" style="height: 10vh;">
   <div class="card-body">
-    [Selected Song]
+    <app-song-details *ngIf="currentSong" [song]="currentSong"></app-song-details>
   </div>
 </div>
 

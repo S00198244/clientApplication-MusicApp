@@ -8,5 +8,4 @@ export interface Song {
     date_downloaded: Date,
     favourited: boolean,
     tags: string[];
-
 }

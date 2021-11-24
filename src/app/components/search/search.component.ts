@@ -27,6 +27,7 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     console.log('forms submitted with ');
     console.table(this.songForm?.value);
+    
     this.songFormClose.emit(this.songForm?.value);
   }
 

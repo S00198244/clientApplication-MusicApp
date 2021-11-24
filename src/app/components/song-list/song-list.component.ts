@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { DataService } from 'src/app/data.service';
 import { Song } from 'src/app/song';
 import { SongService } from 'src/app/song.service';
 
@@ -13,10 +14,9 @@ export class SongListComponent implements OnInit {
   message: string = "";
   showSongForm: boolean = false;
   
-  currentSong? : Song = undefined;
+  currentSong? : Song;
 
-
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.songService.getSongs().subscribe({
@@ -24,12 +24,18 @@ export class SongListComponent implements OnInit {
       complete: () => console.log(this.songList),
       error: (mess) => this.message = mess
     })
+
+    this.dataService.songSelected.subscribe(song => this.currentSong = song)
   }
 
   clicked (song: Song): void {
     this.currentSong = song;
     console.table(this.currentSong)
+
+    this.dataService.changeSong(this.currentSong);
   }
+
+
 
   isSelected(song: Song): boolean {
     if (!song || !this.currentSong) {
@@ -62,13 +68,6 @@ export class SongListComponent implements OnInit {
 
     // so the updated list appears
 
-  //   this.songService.getSongs().subscribe({
-  //     next: (value: Song[]) => this.songList = value,
-  //     complete: () => console.log('song service finished'),
-  //     error: (mess) => this.message = mess
-  //   })
-  // }
-
   this.songService.getSongs().subscribe({
     next: (value: Song[]) => this.songList = value,
     complete: () => console.log('song service finished'),
@@ -76,8 +75,9 @@ export class SongListComponent implements OnInit {
   })
 }
 
-  updateBook(id: string, song: Song): void {
+  updateSong(id: string, song: Song): void {
     console.log('updating ' + JSON.stringify(song));
+
     this.songService.updateSong(id, song)
       .subscribe({
         next: song => {
@@ -86,8 +86,17 @@ export class SongListComponent implements OnInit {
         },
         error: (err) => this.message = err
       });
+
+          // so the updated list appears
+
+          this.songService.getSongs().subscribe({
+            next: (value: Song[]) => this.songList = value,
+            complete: () => console.log('song service finished'),
+            error: (mess) => this.message = mess
+          })
+
     }
-    // so the updated list appears
+
 
 
 
@@ -107,7 +116,7 @@ export class SongListComponent implements OnInit {
     }
 
     else {
-      this.updateBook(this.currentSong._id, song)
+      this.updateSong(this.currentSong._id, song)
     }
   }
 
