@@ -75,10 +75,10 @@ export class SongListComponent implements OnInit {
   })
 }
 
-  updateSong(id: string, song: Song): void {
-    console.log('updating ' + JSON.stringify(song));
+  updateSong(song: Song): void {
+    console.log('updating ' + JSON.stringify(song.title));
 
-    this.songService.updateSong(id, song)
+    this.songService.updateSong(song)
       .subscribe({
         next: song => {
           console.log(JSON.stringify(song) + ' has been updated');
@@ -97,30 +97,7 @@ export class SongListComponent implements OnInit {
 
     }
 
-
-
-
-
-  /* either the form has closed without saving or new book details have been
-  entered or a book has been updated */
-
-  songFormClose(song? : Song): void {
-    this.showSongForm = false;
-    console.table(song);
-    if (song == null) {
-      this.message = "form closed without saving";
-      this.currentSong = undefined
-    }
-    else if (this.currentSong == null) {
-      this.addNewSong(song);
-    }
-
-    else {
-      this.updateSong(this.currentSong._id, song)
-    }
-  }
-
-// note: Bad UX there is no check that the user wants to delete the book and hasn't just 
+    // note: Bad UX there is no check that the user wants to delete the book and hasn't just 
 // hit the button by mistake
 
   deleteSong() {
@@ -145,7 +122,29 @@ export class SongListComponent implements OnInit {
     })
 
   }
-  
+
+
+    
+  /* either the form has closed without saving or new book details have been
+  entered or a book has been updated */
+
+  songFormClose(song? : Song): void {
+    this.showSongForm = false;
+    console.table(song);
+    if (song == null) {
+      this.message = "form closed without saving";
+      this.currentSong = undefined
+    }
+    else if (this.currentSong == null) {
+      this.addNewSong(song);
+    }
+
+    else {
+      this.updateSong(song)
+    }
+  }
+
+
   dismissAlert() {
     this.message = "";
   }

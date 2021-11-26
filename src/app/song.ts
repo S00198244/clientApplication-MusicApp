@@ -7,5 +7,6 @@ export interface Song {
     genres : string[],
     date_downloaded: Date,
     favourited: boolean,
-    tags: string[];
+    tags: string[],
+    imageURL: string
 }

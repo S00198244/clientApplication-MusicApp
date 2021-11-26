@@ -12,6 +12,12 @@
     <input id="artists" type="text" formControlName="artists" class="form-control">
 </div>
 
+<div class="mb-3">
+    <label for="favourited" class="form-check-label">Favourite</label>
+    <input class="form-check-input" type="checkbox" value="false" formControlName="favourited" id="favourited">
+</div>
+
+
 <button type="submit" [disabled]= "!songForm?.valid" class="btn btn-primary" >Submit</button>
 
 <div *ngIf="title?.invalid && title?.touched"  class="alert alert-danger" >

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupName } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupName, FormsModule } from '@angular/forms';
 import { Song } from 'src/app/song';
 
 @Component({
@@ -20,7 +20,8 @@ export class SearchComponent implements OnInit {
     
     this.songForm = new FormGroup({
       title: new FormControl(this.song?.title, [Validators.required, Validators.minLength(3)]),
-      artists: new FormControl(this.song?.artists, [Validators.required, Validators.minLength(3)])
+      artists: new FormControl(this.song?.artists, [Validators.required, Validators.minLength(3)]),
+      favourited: new FormControl(this.song?.favourited, [Validators.required])
     })
   }
 
@@ -38,8 +39,11 @@ export class SearchComponent implements OnInit {
     return this.songForm?.get('artists');
   }
 
+  get favourited() {
+    return this.songForm?.get('favourited');
+  }
+
   closeForm() {
     this.songFormClose.emit(undefined)
   }
-
 }

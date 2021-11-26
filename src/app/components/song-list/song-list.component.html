@@ -1,12 +1,20 @@
-<h2 *ngIf="message">{{message}}</h2>
+<!-- <h2 *ngIf="message">{{message}}</h2> -->
 
 <app-search *ngIf="showSongForm" (songFormClose)="songFormClose($event)" [song]="currentSong"></app-search>
 
-<div *ngIf="!showSongForm">
-  <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'></app-song-row>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button (click)="openAddSong()" *ngIf="!showSongForm" class="btn btn-lg btn-outline-primary">Add Song</button>
+      <button (click)="openEditSong()" *ngIf="!showSongForm" [disabled]="!currentSong"class="btn btn-lg btn-outline-success" style="margin: 1em;">Favourite</button>
+      <button (click)="deleteSong()" *ngIf="!showSongForm" [disabled]="!currentSong" class="btn btn-lg btn-outline-danger">Remove</button>
+    </div>
+  </div>
+
+  <div *ngIf="!showSongForm" class="row">
+    <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'>
+    </app-song-row>
+  </div>
 </div>
 
 
-<button (click)="openAddSong()" *ngIf="!showSongForm" class="btn btn-lg btn-outline-primary">Add Song</button>
-<button (click)="openEditSong()" *ngIf="!showSongForm" [disabled]="!currentSong"class="btn btn-lg btn-outline-primary">Edit Song</button>
-<button (click)="deleteSong()" *ngIf="!showSongForm" [disabled]="!currentSong" class="btn btn-lg btn-outline-danger">Delete Song</button>

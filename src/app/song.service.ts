@@ -22,9 +22,12 @@ export class SongService {
   }
 
   //UPDATE
-  updateSong(id: string, song: Song): Observable<Song> {
-    console.log('subscribing to update' + id);
-    let songURI: string = this.dataUri + '/' + id;
+  updateSong(song: Song): Observable<Song> {
+
+    console.log('subscribing to update ' + song._id);
+
+    let songURI: string = `${this.dataUri}/${song._id}`;
+    
     return this.http.put<Song>(songURI, song)
       .pipe(
         catchError(this.handleError)

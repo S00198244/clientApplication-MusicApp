@@ -1,0 +1,10 @@
+main {
+    display: grid;
+    grid-template-areas: 
+    "topbar topbar topbar"
+    "search" "contentCenter" "contentLeft"
+    "footerOne" "footerTwo" "footerThree";
+
+
+}
+

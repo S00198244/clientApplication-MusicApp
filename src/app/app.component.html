@@ -1,33 +1,61 @@
-<nav class="navbar navbar-light bg-light" style="height: 10vh;">
-    <span class="navbar-brand mb-0 h1" style="padding: 2rem;">Song App</span>
-  </nav>
+<div class="container-fluid" style="height: 100vh; width: 100vw;">
 
-  <div class="container-fluid" style="height: 80vh;">
-    <div class="row">
+  <div class="row content">
+    <div class="col-sm-2 sidenav bg-dark">
 
-      <div class="col-2" style="border-right: solid; padding-top: 2rem;">
-        <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action">
-            All Songs</a>
-          <a href="#" class="list-group-item list-group-item-action">Liked Songs</a>
+      <h3 style="padding: 1em;">Song App</h3>
+
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" aria-current="page">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white active">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Library
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+      <div class="col-sm-10">
+        <div class="row bg-light">
+          <h3 style="padding: 1em;">All Songs</h3>
+        </div>
+        
+        <div class="row overflow-auto" style="height: 500px;">
+          <app-song-list></app-song-list>
+        </div>
         </div>
       </div>
 
-      <div class="col-4" style="border-right: solid; padding: 2rem;">
-        <h1>All Songs</h1>
-        <app-song-list></app-song-list>
-      </div>
+<div class="row bg-dark" style="border-top: solid grey; height: auto;">
+  <div class="col-sm-2" style="margin: 2em;">
+    <img src={{currentSong?.imageURL}} alt="" style="height: 150px; margin: 2em;"/>
+  </div>
 
-    <div class="col-4">
-      
-    </div>
-    </div>
+  <div class="col-sm-4" style="margin: 2em;">
+    <app-song-details *ngIf="currentSong" [song]="currentSong" style="color: white;"></app-song-details>
+  </div>
+
+<div class="col-sm-4" *ngIf="currentSong" style="margin: 2em; color: white;">
+  <h6>Album</h6>
+    <h4>{{currentSong?.album}}</h4>
+
+    <h6>Genres</h6>
+    <h4>{{currentSong?.genres}}</h4>
+
+    <h6>Favourited</h6>
+    <h4>{{currentSong?.favourited}}</h4>
+  
 </div>
 
-<div class="card w-100" style="height: 10vh;">
-  <div class="card-body">
-    <app-song-details *ngIf="currentSong" [song]="currentSong"></app-song-details>
-  </div>
+
+
 </div>
 
 <router-outlet></router-outlet>
