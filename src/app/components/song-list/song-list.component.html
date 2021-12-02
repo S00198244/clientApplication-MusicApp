@@ -2,8 +2,10 @@
 
 <app-search *ngIf="showSongForm" (songFormClose)="songFormClose($event)" [song]="currentSong"></app-search>
 
+
 <div class="container">
-  <div class="row">
+
+  <div class="row"> <!-- Row 1 buttons -->
     <div class="col">
       <button (click)="openAddSong()" *ngIf="!showSongForm" class="btn btn-lg btn-outline-primary">Add Song</button>
       <button (click)="openEditSong()" *ngIf="!showSongForm" [disabled]="!currentSong"class="btn btn-lg btn-outline-success" style="margin: 1em;">Favourite</button>
@@ -11,10 +13,32 @@
     </div>
   </div>
 
-  <div *ngIf="!showSongForm" class="row">
-    <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'>
-    </app-song-row>
+  <div class="row"> <!-- Row 2 song list -->
+    <div class="col overflow-auto" style="height: 500px;">
+      <div *ngIf="!showSongForm" class="row">
+        <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'></app-song-row>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bg-dark" style="border-top: solid grey; height: auto;"> <!-- Row 3 song details -->
+    <div class="col-sm-2" style="margin: 2em;">
+      <img src={{currentSong?.imageURL}} alt="" style="height: 150px; margin: 2em;"/>
+    </div>
+  
+    <div class="col-sm-4" style="margin: 2em;">
+      <app-song-details *ngIf="currentSong" [song]="currentSong" style="color: white;"></app-song-details>
+    </div>
+  
+  <div class="col-sm-4" *ngIf="currentSong" style="margin: 2em; color: white;">
+    <h6>Album</h6>
+      <h4>{{currentSong?.album}}</h4>
+  
+    <h6>Genres</h6>
+      <h4>{{currentSong?.genres}}</h4>
+  
+    <h6>Favourited</h6>
+      <h4>{{currentSong?.favourited}}</h4>
+    </div>
   </div>
 </div>
-
-
