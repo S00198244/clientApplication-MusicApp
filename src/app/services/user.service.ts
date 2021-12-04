@@ -21,6 +21,10 @@ export class UserService {
     this.user = this.userSubject.asObservable();
   }
 
+  public get userValue(): User|null {
+    return this.userSubject.value;
+  }
+
   // POST A USER
 
   createUser(user: User): Observable<User> {
