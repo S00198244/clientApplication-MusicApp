@@ -12,7 +12,8 @@ const routes: Routes = [
   {path: 'songs',component: SongListComponent},
   {path: 'users', component: UserListComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
