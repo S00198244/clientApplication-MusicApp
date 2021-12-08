@@ -35,8 +35,6 @@ export class SongListComponent implements OnInit {
     this.dataService.changeSong(this.currentSong);
   }
 
-
-
   isSelected(song: Song): boolean {
     if (!song || !this.currentSong) {
       return false;
@@ -143,7 +141,6 @@ export class SongListComponent implements OnInit {
       this.updateSong(song)
     }
   }
-
 
   dismissAlert() {
     this.message = "";

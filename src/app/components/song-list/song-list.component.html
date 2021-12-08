@@ -15,9 +15,11 @@
 
   <div class="row"> <!-- Row 2 song list -->
     <div class="col overflow-auto" style="height: 500px;">
+      
       <div *ngIf="!showSongForm" class="row">
         <app-song-row *ngFor="let s of songList" [song]="s" (click)='clicked(s)'></app-song-row>
       </div>
+
     </div>
   </div>
 

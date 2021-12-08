@@ -36,7 +36,9 @@ import { JwtinterceptorService } from './services/jwtinterceptor.service';
     ReactiveFormsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi: true}
+    {
+      provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

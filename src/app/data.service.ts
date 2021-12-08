@@ -10,6 +10,7 @@ export class DataService {
   currentSong!: Song;
 
   private songSource = new BehaviorSubject<Song>(this.currentSong);
+  
   songSelected = this.songSource.asObservable();
 
   constructor() { }

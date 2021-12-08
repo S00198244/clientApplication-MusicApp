@@ -12,6 +12,6 @@ export class SongRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+  }
 }

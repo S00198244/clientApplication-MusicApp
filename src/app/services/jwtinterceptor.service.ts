@@ -5,9 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class JwtinterceptorService implements HttpInterceptor {
 
   constructor(private userService: UserService) { }
@@ -22,7 +20,7 @@ export class JwtinterceptorService implements HttpInterceptor {
 
     if (accessToken && isApiUrl) {
         request = request.clone({
-            setHeaders: { Authorization: `Bearer ${accessToken}` }
+            headers: request.headers.set("Authorization", `Bearer ${accessToken}`)
         });
     }
 

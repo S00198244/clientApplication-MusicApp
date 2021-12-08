@@ -3,6 +3,7 @@ import { User } from '../interfaces/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators'
 })
 export class UserService {
 
-  private apiURI: string = 'http://localhost:3000';
+  private apiURI: string = environment.apiUrl + "/songs";
   private userSubject: BehaviorSubject<User|null>;
   public user: Observable<User|null>;
 
