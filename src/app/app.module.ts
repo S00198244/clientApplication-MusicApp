@@ -15,6 +15,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { JwtinterceptorService } from './services/jwtinterceptor.service';
+import { ErrorInterceptorService } from './services/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,10 @@ import { JwtinterceptorService } from './services/jwtinterceptor.service';
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi: true
-    }
+      provide: HTTP_INTERCEPTORS, useClass: JwtinterceptorService, multi: true,
+      
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

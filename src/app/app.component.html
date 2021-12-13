@@ -4,10 +4,13 @@
       <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
       <a class="nav-item nav-link" routerLink="/songs" routerLinkActive="active">Songs</a>
       <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-      <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>
-    
+
+      <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active" *ngIf="!loggedIn">Login</a>
+      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active" *ngIf="!loggedIn">Register</a>
+
+      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active" *ngIf="loggedIn">Log Out</a>
     </div>
+
 </nav>
 
 <router-outlet></router-outlet>

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SongService {
 
-  private dataUri = 'http://localhost:3000/songs'
+  private dataUri = 'https://localhost:8080/songs'
 
   constructor(private http: HttpClient) { }
 

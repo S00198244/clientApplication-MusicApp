@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
 
   currentSong? : Song;
 
+  public loggedIn = localStorage.getItem('currentUser');
+
   ngOnInit() {
     this.data.songSelected.subscribe(currentSong => this.currentSong = currentSong)
   }

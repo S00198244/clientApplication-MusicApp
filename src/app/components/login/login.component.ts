@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   
   constructor(    
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
 ) { }
 
   ngOnInit()  {
@@ -42,11 +44,14 @@ export class LoginComponent implements OnInit {
     // }
 
     onSubmit() {
+
       this.userService.login(this.signinForm?.value) // this.signinForm?.value
           .subscribe(
-              data => {
-                  console.log(data);
-                  this.message = `Login successful for ${data.firstName} need to implement redirect`
+              (response) => {
+                  console.log(response);
+                  // this.message = `Login successful for ${response.firstName} need to implement redirect`;
+                  this.router.navigate(['/songs']);
+                  window.location.reload();
               },
               error => {
                   console.log(error);

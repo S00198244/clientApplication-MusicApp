@@ -11,7 +11,10 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
+  private defaultUrl : string = environment.apiUrl;
   private apiURI: string = environment.apiUrl + "/songs";
+  private uri: string = environment.apiUrl + '/users';
+
   private userSubject: BehaviorSubject<User|null>;
   public user: Observable<User|null>;
 
@@ -29,10 +32,8 @@ export class UserService {
   // POST A USER
 
   createUser(user: User): Observable<User> {
-
-    const uri: string = this.apiURI + '/users';
-
-    return this.http.post<User>(uri, user).
+  
+    return this.http.post<User>(this.uri, user).
       pipe(
         catchError(this.handleError)
       );
@@ -44,7 +45,7 @@ export class UserService {
 
     console.log("get Users called");
 
-    return this.http.get<User[]>(`${this.apiURI}/users`)
+    return this.http.get<User[]>(`${this.uri}/users`)
       .pipe(
         catchError(this.handleError)
       )
@@ -56,15 +57,27 @@ export class UserService {
 
   public login(user: User): Observable<any> {
 
-    return this.http.post<any>(`${this.apiURI}/auth`, user).
+    return this.http.post<any>(`${this.defaultUrl}/auth`, user, {withCredentials:true}).
     pipe(map(user => {
-     localStorage.setItem('currentUser', JSON.stringify(user))
-     this.userSubject.next(user);
+      
+
     // later we will start a timer based on the JWT expiry and
     // use a refresh token to get a new JWT in the background.
-    //this.startAuthenticateTimer();
+
+    const payload = JSON.parse(atob(user.accessToken.split('.')[1]));
+    const expires = new Date(payload.exp * 1000);
+
+    localStorage.setItem('currentUser', JSON.stringify(user))
+    this.userSubject.next(user);
+
+    //this.startAuthenticateTimer(expires);
+
     return user;}
     ))
+  }
+
+  startAuthenticateTimer(expires: Date) {
+    throw new Error('Method not implemented.');
   }
 
   //LOG OUT A USER
@@ -75,7 +88,32 @@ export class UserService {
     this.userSubject.next(null);
 }
 
+//
 
+private getNewAccessToken(): Observable<any> {
+
+  // note the withCredentials below means that cookies will be sent to the server
+
+  return this.http.post<any>(`${this.apiURI}/auth/refresh`, {userid : this.userValue?._id},
+    { withCredentials: true }).
+    pipe(map(user => {
+      console.log('here')
+
+      // get the expiry time from the JWT
+      const payload = JSON.parse(atob(user.accessToken.split('.')[1]));
+      const expires = new Date(payload.exp * 1000);
+
+      localStorage.setItem('currentUser', JSON.stringify(user))
+      this.userSubject.next(user);
+
+      this.startAuthenticateTimer(expires);
+      return user;
+    }),
+      catchError(this.handleError))
+}
+
+
+  //____________________________________________________________________________________________________ ERROR HANDLING
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
