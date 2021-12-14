@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit {
               (response) => {
                   console.log(response);
                   // this.message = `Login successful for ${response.firstName} need to implement redirect`;
-                  this.router.navigate(['/songs']);
                   window.location.reload();
+                  this.router.navigate(['/songs']);
+                  //window.location.reload();
               },
               error => {
                   console.log(error);

@@ -45,7 +45,7 @@ export class UserService {
 
     console.log("get Users called");
 
-    return this.http.get<User[]>(`${this.uri}/users`)
+    return this.http.get<User[]>(`${this.uri}`)
       .pipe(
         catchError(this.handleError)
       )
@@ -85,6 +85,7 @@ export class UserService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+
     this.userSubject.next(null);
 }
 

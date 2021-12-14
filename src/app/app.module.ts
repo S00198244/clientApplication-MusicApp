@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 
 import { JwtinterceptorService } from './services/jwtinterceptor.service';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { UserRowComponent } from './components/user-row/user-row.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     LoginComponent,
     RegisterComponent,
     UserListComponent,
-    HomeComponent
+    HomeComponent,
+    UserRowComponent
   ],
   imports: [
     BrowserModule,
