@@ -1,5 +1,11 @@
-<div class="row">
-    <div class="col">
-        <h3>Home</h3>
+<div class="container" style="height: 90vh;"> 
+    <div class="jumbotron" style="text-align: center; width: 24em; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px;">
+      <h1>Music Library Application</h1>
+      
+      <div *ngIf="!user">
+        <p>To view users and songs please sign in</p> 
+        <a [routerLink]='["/login"]' routerLinkActive="active">Have an account? Log in here</a>
+      </div>
+
     </div>
-</div>
+  </div>

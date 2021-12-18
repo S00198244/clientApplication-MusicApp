@@ -1,8 +1,32 @@
-<h6>Song title</h6>
-<h4>{{song.title}}</h4>
+<div class="row" style="margin: 2em;">
 
-<h6>Artists</h6>
-<h4>{{song.artists}}</h4>
+    <div class="col">
+        <h6>Cover art</h6>
+        <img src={{song.imageURL}} alt="" style="height: 150px;"/>
+    </div>
+
+    <div class="col">
+        <h6>Song title</h6>
+        <h4>{{song.title}}</h4>
+
+        <h6>Artists</h6>
+        <h4>{{song.artists}}</h4>
+    </div>
+
+    <div class="col">
+        <h6>Album</h6>
+        <h4>{{song.album}}</h4>
+
+        <h6>Genres</h6>
+        <h4>{{song.genres}}</h4>
+
+        <h6>Favourited</h6>
+        <h4>{{song.favourited}}</h4>
+    </div>
+
+</div>
+
+
 
 
  

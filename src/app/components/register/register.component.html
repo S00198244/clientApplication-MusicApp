@@ -1,40 +1,41 @@
-<div class="col-md-6 offset-md-3 mt-5">
+<body>
+<div class="card" style="width: 24em; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px;">
 
-    <div *ngIf="message" class="alert alert-warning alert-dismissible show" role="alert">
+    <!-- <div *ngIf="message" class="alert alert-warning alert-dismissible show" role="alert">
         <strong>Opps</strong> {{message}}
         <button type="button" class="btn-close" (click)="dismissAlert()" aria-label="Close"></button>
-    </div>
+    </div> -->
+    <h4 class="card-header">Registration Form</h4>
+    <div class="card-body">
 
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class>
 
-        <!-- <button type="button" class="btn-close" aria-label="Close" (click)="closeForm()"></button> -->
-
-        <div class="mb-3">
-            <label for="firstName" class="form-label"> First Name</label>
+        <div class="form-group">
+            <label for="firstName" class="form-label">Name</label>
             <input id="firstName" type="text" formControlName="firstName" class="form-control">
         </div>
-        <div class="mb-3">
-            <label for="lastName" class="form-label"> Last Name</label>
+
+        <div class="form-group">
+            <label for="lastName" class="form-label">Surname</label>
             <input id="lastName" type="text" formControlName="lastName" class="form-control">
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="email" class="form-label"> Email</label>
-            <input id="eamil" type="text" formControlName="email" class="form-control">
+            <input id="eamil" type="text" formControlName="email" class="form-control" required>
         </div>
-        <div class="mb-3">
+
+        <div class="form-group">
             <label for="password" class="form-label"> Password</label>
             <input id="password" type="password" formControlName="password" class="form-control">
         </div>
 
-        <button type="submit" [disabled]="!userForm?.valid" class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]="!userForm?.valid" class="btn btn-primary" style="margin: 10%">Submit</button>
 
-        <!-- <div *ngIf="title?.invalid && title?.touched"  class="alert alert-danger" >
-    Title is required and must be more than 3 characters
-</div>
-<div *ngIf="year_written?.invalid && year_written?.touched"  class="alert alert-danger" >
-    Year Written is required and must be 2024 or earlier
-</div> -->
+        <br />
+        <a [routerLink]='["/login"]' routerLinkActive="active">Have an account? Log in here</a>
 
     </form>
+    </div>
 </div>
-
+</body>

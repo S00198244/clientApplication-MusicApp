@@ -16,16 +16,23 @@ export class SongListComponent implements OnInit {
   
   currentSong? : Song;
 
-  constructor(private songService: SongService, private dataService: DataService) { }
+  constructor(private songService: SongService, private dataService: DataService) {
+
+   }
 
   ngOnInit(): void {
+
+    this.getSongs();
+
+    this.dataService.songSelected.subscribe(song => this.currentSong = song)
+  }
+
+  getSongs() {
     this.songService.getSongs().subscribe({
       next: (value: Song[] )=> this.songList = value,
       complete: () => console.log(this.songList),
       error: (mess) => this.message = mess
     })
-
-    this.dataService.songSelected.subscribe(song => this.currentSong = song)
   }
 
   clicked (song: Song): void {
@@ -99,7 +106,9 @@ export class SongListComponent implements OnInit {
 // hit the button by mistake
 
   deleteSong() {
+
     console.log('deleting a song');
+
     if (this.currentSong) {
       this.songService.deleteSong(this.currentSong._id)
         .subscribe({
@@ -110,15 +119,12 @@ export class SongListComponent implements OnInit {
           error: (err) => this.message = err
         });
     }
-
     // so the updated list appears
-
     this.songService.getSongs().subscribe({
       next: (value: Song[]) => this.songList = value,
       complete: () => console.log('book service finished'),
       error: (mess) => this.message = mess
     })
-
   }
 
 

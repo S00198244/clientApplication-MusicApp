@@ -1,5 +1,6 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" >
+<nav class="navbar navbar-expand navbar-dark bg-dark" style="height: 10vh;" >
+
   <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
       <a class="nav-item nav-link" routerLink="/songs" routerLinkActive="active" *ngIf="user">Songs</a>
@@ -9,7 +10,7 @@
       <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active" *ngIf="!user">Register</a>
 
       <a class="nav-item nav-link" routerLinkActive="active" *ngIf="user" (click)="logout()">Log Out</a>
-    </div>
+  </div>
 
 </nav>
 

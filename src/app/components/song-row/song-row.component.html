@@ -2,16 +2,12 @@
   <div class="col">
     <h6> {{song.title}} by {{song.artists}}</h6>
   </div>
-  <!-- <div class="col">
-    <button class="btn btn-lg btn-outline-primary">Heart</button>
-  </div>
   <div class="col">
-    <button class="btn btn-lg btn-outline-danger">X</button>
-    </div> -->
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" (click)="favourite()" [ngStyle]="{'fill': song.favourited == true ? 'red' : 'lightgrey'}" width="24" height="24" viewBox="0 0 24 24" style="margin-right: 2em;"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="lightgrey" (click)="delete()"><path d="M3 6v18h18v-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.731 2 1.631 2h5.712z"/></svg>
+  </div>
 </div>
 
 <!-- <button (click)="openEditSong()" *ngIf="!showSongForm" [disabled]="!currentSong"class="btn btn-lg btn-outline-primary" style="margin: 1em;">Favourites</button>
 <button (click)="deleteSong()" *ngIf="!showSongForm" [disabled]="!currentSong" class="btn btn-lg btn-outline-danger">Remove</button> -->
-
-
 

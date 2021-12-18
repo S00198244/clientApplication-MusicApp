@@ -21,13 +21,10 @@ export class LoginComponent implements OnInit {
   ngOnInit()  {
     this.signinForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('')
+      password: new FormControl('', [Validators.required])
     })
-  //   this.signinForm = this.fb.group({
-  //     email: [null, [Validators.required, Validators.email]],
-  //     password: [null, Validators.required]
-  // });
   }
+  
   // get form() 
   //   { 
   //       return this.signinForm.controls; 
