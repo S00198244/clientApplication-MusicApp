@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
               (response) => {
                   console.log(response);
                   // this.message = `Login successful for ${response.firstName} need to implement redirect`;
-                  window.location.reload();
+                  //window.location.reload();
                   this.router.navigate(['/songs']);
                   //window.location.reload();
-              },
+              },        
               error => {
                   console.log(error);
                   this.message = "Unable to log in please try again"

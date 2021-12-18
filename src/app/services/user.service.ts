@@ -19,7 +19,6 @@ export class UserService {
   public user: Observable<User|null>;
 
   constructor(private http: HttpClient) { 
-
     this.userSubject = new BehaviorSubject<User|null>
     (JSON.parse(localStorage.getItem('currentUser') || '{}')) ;
     this.user = this.userSubject.asObservable();
@@ -59,8 +58,6 @@ export class UserService {
 
     return this.http.post<any>(`${this.defaultUrl}/auth`, user, {withCredentials:true}).
     pipe(map(user => {
-      
-
     // later we will start a timer based on the JWT expiry and
     // use a refresh token to get a new JWT in the background.
 
@@ -72,7 +69,8 @@ export class UserService {
 
     //this.startAuthenticateTimer(expires);
 
-    return user;}
+    return user;
+    }
     ))
   }
 

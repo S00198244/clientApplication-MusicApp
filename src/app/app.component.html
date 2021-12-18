@@ -2,13 +2,13 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" >
   <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
-      <a class="nav-item nav-link" routerLink="/songs" routerLinkActive="active">Songs</a>
-      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+      <a class="nav-item nav-link" routerLink="/songs" routerLinkActive="active" *ngIf="user">Songs</a>
+      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active" *ngIf="user">Users</a>
 
-      <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active" *ngIf="!loggedIn">Login</a>
-      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active" *ngIf="!loggedIn">Register</a>
+      <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active" *ngIf="!user">Login</a>
+      <a class="nav-item nav-link" routerLink="/register" routerLinkActive="active" *ngIf="!user">Register</a>
 
-      <a class="nav-item nav-link" routerLinkActive="active" *ngIf="loggedIn" (click)="logout()">Log Out</a>
+      <a class="nav-item nav-link" routerLinkActive="active" *ngIf="user" (click)="logout()">Log Out</a>
     </div>
 
 </nav>

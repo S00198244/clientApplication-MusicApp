@@ -5,6 +5,7 @@ import { SongRowComponent } from './components/song-row/song-row.component';
 import { DataService } from './data.service';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,16 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'clientApplication-MusicApp';
+  public user?: User|null;
 
-  constructor(private data: DataService, private userService: UserService, private router: Router) { }
+  constructor(private data: DataService, private userService: UserService, private router: Router) {
+    //public loggedIn = localStorage.getItem('currentUser');
+    this.userService.user.subscribe(user => this.user = user);
+   }
 
   currentSong? : Song;
 
-  public loggedIn = localStorage.getItem('currentUser');
+
 
   ngOnInit() {
     this.data.songSelected.subscribe(currentSong => this.currentSong = currentSong)
@@ -26,9 +31,6 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-
-    window.location.reload();
-
     this.router.navigate(['/login']);
   }
 }
